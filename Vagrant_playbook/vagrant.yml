@@ -1,0 +1,8 @@
+- hosts: all
+  become: yes
+  tasks:
+  - name: dnf > python2, ansible, python2-requests, python2-libcloud, libselinux-python, python2-jmespath
+    dnf:
+      name: python2, ansible, python2-requests, python2-libcloud, libselinux-python, python2-jmespath
+      state: latest
+
