@@ -12,9 +12,9 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  # config.vm.box = "centos/7"
-  config.vm.box_url = "https://download.fedoraproject.org/pub/fedora/linux/releases/26/CloudImages/x86_64/images/Fedora-Cloud-Base-Vagrant-26-1.5.x86_64.vagrant-virtualbox.box"
-  config.vm.box = "fedora26"
+   config.vm.box = "centos/7"
+#  config.vm.box_url = "https://download.fedoraproject.org/pub/fedora/linux/releases/26/CloudImages/x86_64/images/Fedora-Cloud-Base-Vagrant-26-1.5.x86_64.vagrant-virtualbox.box"
+#  config.vm.box = "fedora26"
   config.vm.synced_folder ".", "/vagrant", type:"virtualbox"
 #  config.vm.box_version = 0
 
