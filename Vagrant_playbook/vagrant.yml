@@ -70,6 +70,16 @@
     - name: install pip
       shell: curl -kL https://bootstrap.pypa.io/get-pip.py | /opt/local/bin/python
 
+    - name: pymongo
+      pip:
+        name: pymongo
+        executable: /opt/local/bin/pip
+
+    - name: psutil
+      pip:
+        name: psutil
+        executable: /opt/local/bin/pip
+
     - name: upgrade all packages
       yum:
         name: '*'
