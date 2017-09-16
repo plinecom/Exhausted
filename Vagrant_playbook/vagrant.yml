@@ -31,6 +31,9 @@
       command: make install
       args:
         chdir: /root/Python-2.7.13
+    - name: install pip
+      shell: curl -kL https://bootstrap.pypa.io/get-pip.py | /opt/local/bin/python
+
     - name: upgrade all packages
       yum:
         name: '*'
