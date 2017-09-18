@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import psutil
+import pymongo
 
 print psutil.cpu_percent(percpu=True)
 
@@ -15,3 +16,19 @@ for proc in psutil.process_iter():
         pass
     else:
         print(pinfo)
+
+# mongodb へのアクセスを確立
+client = pymongo.MongoClient('127.0.0.1', 27017)
+
+# データベースを作成 (名前: my_database)
+db = client.my_database
+
+# コレクションを作成 (名前: my_collection)
+co = db.my_collection
+
+# なんか適当に保存
+co.insert_one({"test": 3})
+
+# 全部とってくる
+for data in co.find():
+    print data
