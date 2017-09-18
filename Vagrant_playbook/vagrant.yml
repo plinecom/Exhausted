@@ -18,11 +18,11 @@
     - name: config selinux
       command: semanage port -a -t mongod_port_t -p tcp 27080
 
-    - name: config mongodb port
-      replace:
-        dest: /etc/mongod.conf
-        regexp: 'port: 27017'
-        replace: 'port: 27080'
+#    - name: config mongodb port
+#      replace:
+#        dest: /etc/mongod.conf
+#        regexp: 'port: 27017'
+#        replace: 'port: 27080'
 
     - name: config allow ext
       replace:
