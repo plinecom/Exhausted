@@ -10,7 +10,7 @@ print psutil.virtual_memory()
 
 for proc in psutil.process_iter():
     try:
-        pinfo = proc.as_dict(attrs=['pid', 'name'])
+        pinfo = proc.as_dict(attrs=['pid', 'name', 'cmdline'])
     except psutil.NoSuchProcess:
         pass
     else:
