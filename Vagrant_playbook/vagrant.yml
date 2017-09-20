@@ -12,7 +12,7 @@
         state: latest
     - name: firewall for mongodb
       firewalld:
-        port: 27080/tcp
+        port: 27017/tcp
         permanent: true
         state: enabled
     - name: config selinux
