@@ -16,7 +16,7 @@
         permanent: true
         state: enabled
     - name: config selinux
-      command: semanage port -a -t mongod_port_t -p tcp 27080
+      command: semanage port -a -t mongod_port_t -p tcp 27017
 
 #    - name: config mongodb port
 #      replace:
