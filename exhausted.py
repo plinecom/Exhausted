@@ -24,7 +24,7 @@ date = datetime.now().strftime("%Y/%m/%d %H:%M:%S")
 
 for proc in psutil.process_iter():
     try:
-        pinfo = proc.as_dict(attrs=['pid', 'name', 'cmdline', 'cpu_percent', 'num_threads', 'username', 'memory_percent'])
+        pinfo = proc.as_dict(attrs=['pid', 'name', 'cmdline', 'environ', 'cpu_percent', 'num_threads', 'username', 'memory_percent'])
     except psutil.NoSuchProcess:
         pass
     else:
