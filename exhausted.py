@@ -19,10 +19,10 @@ def data_collect():
     client = pymongo.MongoClient('127.0.0.1', 27017)
 
     # データベースを作成 (名前: my_database)
-    db = client.my_database
+    db = client.job_database
 
     # コレクションを作成 (名前: my_collection)
-    co = db.my_collection
+    co = db.job_collection
 
     while True:
 
