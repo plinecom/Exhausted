@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import psutil
 import pymongo
+import pymongo.errors
 import os
 from datetime import datetime
 import time
@@ -36,7 +37,10 @@ def data_collect():
             else:
                 pinfo["hostname"] = os.uname()
                 pinfo["date"] = date
-                co.insert_one(pinfo)
+                try:
+                    co.insert_one(pinfo)
+                except pymongo.errors.PyMongoError:
+                    pass
 
         time.sleep(30)
 
