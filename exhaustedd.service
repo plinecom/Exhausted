@@ -1,10 +1,10 @@
 [Unit]
 Description=Sample Daemon
 [Service]
-ExecStart=/opt/local/python /opt/local/bin/exhauted/exthauted.py
+ExecStart=/opt/local/bin/python /opt/local/bin/exhauted/exthauted.py
 Restart=always
 Type=forking
-PIDFile=/var/run/exthautedd.pid
+PIDFile=/var/run/exhaustedd.pid
 
 [Install]
 WantedBy=multi-user.target graphical.target
