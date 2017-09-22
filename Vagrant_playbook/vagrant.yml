@@ -48,7 +48,7 @@
 
     - name: python build env
       yum:
-        name: zlib-devel, bzip2-devel, openssl-devel, ncurses-devel, sqlite-devel, readline-devel, tk-devel, gdbm-devel, db4-devel
+        name: zlib-devel, bzip2-devel, openssl-devel, ncurses-devel, sqlite-devel, readline-devel, tk-devel, gdbm-devel, db4-devel, libselinux-python
         state: latest
     - name: get python2
       unarchive:
@@ -78,6 +78,26 @@
     - name: psutil
       pip:
         name: psutil
+        executable: /opt/local/bin/pip
+
+    - name: ansible
+      pip:
+        name: ansible
+        executable: /opt/local/bin/pip
+
+    - name: requests
+      pip:
+        name: requests
+        executable: /opt/local/bin/pip
+
+    - name: jmespath
+      pip:
+        name: jmespath
+        executable: /opt/local/bin/pip
+
+    - name: apache-libcloud
+      pip:
+        name: apache-libcloud
         executable: /opt/local/bin/pip
 
     - name: upgrade all packages
