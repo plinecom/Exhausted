@@ -79,10 +79,18 @@ Vagrant.configure("2") do |config|
   #   apt-get install -y apache2
   # SHELL
 
-  config.vm.provision "ansible_local" do |ansible|
-    ansible.playbook = "Vagrant_playbook/vagrant.yml"
-  end
+  config.vm.define :mongodb do |mongodb|
 
+    mongodb.vm.provision "ansible_local" do |ansible|
+        ansible.playbook = "Vagrant_playbook/vagrant.yml"
+    end
+  end
+  config.vm.define :node1 do |node1|
+
+    node1.vm.provision "ansible_local" do |ansible|
+        ansible.playbook = "Vagrant_playbook/vagrant2.yml"
+    end
+  end
 #  config.vm.provision "shell", inline: <<-SHELL
 #    dnf install -y python2 ansible python2-requests.noarch python2-libcloud wget
 #    cd /home/vagrant

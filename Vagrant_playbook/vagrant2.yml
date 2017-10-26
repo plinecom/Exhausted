@@ -1,0 +1,72 @@
+- hosts: all
+  become: yes
+  tasks:
+
+    - name: install gcc
+      yum:
+        name: gcc, gcc-c++
+        state: latest
+    - name: install misc
+      yum:
+        name: wget
+        state: latest
+
+    - name: python build env
+      yum:
+        name: zlib-devel, bzip2-devel, openssl-devel, ncurses-devel, sqlite-devel, readline-devel, tk-devel, gdbm-devel, db4-devel, libselinux-python
+        state: latest
+    - name: get python2
+      unarchive:
+        src: https://www.python.org/ftp/python/2.7.14/Python-2.7.14.tar.xz
+        dest: /root
+        remote_src: True
+    - name: configure
+      command: ./configure --prefix=/opt/local
+      args:
+        chdir: /root/Python-2.7.14
+    - name: make
+      command: make
+      args:
+        chdir: /root/Python-2.7.14
+    - name: make
+      command: make install
+      args:
+        chdir: /root/Python-2.7.14
+    - name: install pip
+      shell: curl -kL https://bootstrap.pypa.io/get-pip.py | /opt/local/bin/python
+
+    - name: pymongo
+      pip:
+        name: pymongo
+        executable: /opt/local/bin/pip
+
+    - name: psutil
+      pip:
+        name: psutil
+        executable: /opt/local/bin/pip
+
+    - name: ansible
+      pip:
+        name: ansible
+        executable: /opt/local/bin/pip
+
+    - name: requests
+      pip:
+        name: requests
+        executable: /opt/local/bin/pip
+
+    - name: jmespath
+      pip:
+        name: jmespath
+        executable: /opt/local/bin/pip
+
+    - name: apache-libcloud
+      pip:
+        name: apache-libcloud
+        executable: /opt/local/bin/pip
+
+    - name: upgrade all packages
+      yum:
+        name: '*'
+        state: latest
+
