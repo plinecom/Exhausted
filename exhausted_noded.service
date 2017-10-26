@@ -1,0 +1,10 @@
+[Unit]
+Description=Sample Daemon
+[Service]
+ExecStart=/opt/local/bin/python /opt/local/bin/exhauted/exhauted_node.py
+Restart=always
+Type=forking
+PIDFile=/var/run/exhausted_noded.pid
+
+[Install]
+WantedBy=multi-user.target graphical.target

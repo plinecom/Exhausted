@@ -1,7 +1,7 @@
 [Unit]
 Description=Sample Daemon
 [Service]
-ExecStart=/opt/local/bin/python /opt/local/bin/exhauted/exthauted.py
+ExecStart=/opt/local/bin/python /opt/local/bin/exhauted/exhauted.py
 Restart=always
 Type=forking
 PIDFile=/var/run/exhaustedd.pid

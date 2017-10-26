@@ -74,14 +74,14 @@
         mode: 0775
     - name: deploy
       copy:
-        src: /vagrant/job_monitor/exhausted.py
-        dest: /opt/local/bin/exhauted/exhauted.py
+        src: /vagrant/exhausted.py
+        dest: /opt/local/bin/exhauted/exhauted_node.py
         mode: 0775
 
     - name: deploy
       copy:
-        src: /vagrant/job_monitor/exhaustedd.service
-        dest: /usr/lib/systemd/system/exhaustedd.service
+        src: /vagrant/exhausted_noded.service
+        dest: /usr/lib/systemd/system/exhausted_noded.service
         mode: 0775
 
     - name: daemon
