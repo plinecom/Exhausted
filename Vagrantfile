@@ -82,13 +82,25 @@ Vagrant.configure("2") do |config|
   config.vm.define :mongodb do |mongodb|
 
     mongodb.vm.provision "ansible_local" do |ansible|
-        ansible.playbook = "Vagrant_playbook/vagrant.yml"
+        ansible.playbook = "Vagrant_playbook/mongodb_node.yml"
     end
   end
   config.vm.define :node1 do |node1|
 
     node1.vm.provision "ansible_local" do |ansible|
-        ansible.playbook = "Vagrant_playbook/vagrant2.yml"
+        ansible.playbook = "Vagrant_playbook/vagrant.yml"
+    end
+  end
+  config.vm.define :node2 do |node2|
+
+    node2.vm.provision "ansible_local" do |ansible|
+        ansible.playbook = "Vagrant_playbook/vagrant.yml"
+    end
+  end
+  config.vm.define :center do |center|
+
+    center.vm.provision "ansible_local" do |ansible|
+        ansible.playbook = "Vagrant_playbook/vagrant.yml"
     end
   end
 #  config.vm.provision "shell", inline: <<-SHELL

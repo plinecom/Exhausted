@@ -2,38 +2,71 @@
   become: yes
   tasks:
 
-    - name: setup yum repo
-      copy:
-        src: ../mongodb/mongodb-org-3.4.repo
-        dest: /etc/yum.repos.d/mongodb-org-3.4.repo
-    - name: install mongodb
+    - name: install gcc
       yum:
-        name: mongodb-org,policycoreutils-python
+        name: gcc, gcc-c++
         state: latest
-    - name: firewall for mongodb
-      firewalld:
-        port: 27017/tcp
-        permanent: true
-        state: enabled
-    - name: config selinux
-      command: semanage port -a -t mongod_port_t -p tcp 27017
+    - name: install misc
+      yum:
+        name: wget
+        state: latest
 
-#    - name: config mongodb port
-#      replace:
-#        dest: /etc/mongod.conf
-#        regexp: 'port: 27017'
-#        replace: 'port: 27080'
+    - name: python build env
+      yum:
+        name: zlib-devel, bzip2-devel, openssl-devel, ncurses-devel, sqlite-devel, readline-devel, tk-devel, gdbm-devel, db4-devel, libselinux-python
+        state: latest
+    - name: get python2
+      unarchive:
+        src: https://www.python.org/ftp/python/2.7.14/Python-2.7.14.tar.xz
+        dest: /root
+        remote_src: True
+    - name: configure
+      command: ./configure --prefix=/opt/local
+      args:
+        chdir: /root/Python-2.7.14
+    - name: make
+      command: make
+      args:
+        chdir: /root/Python-2.7.14
+    - name: make
+      command: make install
+      args:
+        chdir: /root/Python-2.7.14
+    - name: install pip
+      shell: curl -kL https://bootstrap.pypa.io/get-pip.py | /opt/local/bin/python
 
-    - name: config allow ext
-      replace:
-        dest: /etc/mongod.conf
-        regexp: 'bindIp: 127.0.0.1'
-        replace: 'bindIp: 0.0.0.0'
+    - name: pymongo
+      pip:
+        name: pymongo
+        executable: /opt/local/bin/pip
 
+    - name: psutil
+      pip:
+        name: psutil
+        executable: /opt/local/bin/pip
 
-    - name: start mongodb service
-      systemd:
-        name: mongod
-        enabled: yes
-        state: started
+    - name: ansible
+      pip:
+        name: ansible
+        executable: /opt/local/bin/pip
+
+    - name: requests
+      pip:
+        name: requests
+        executable: /opt/local/bin/pip
+
+    - name: jmespath
+      pip:
+        name: jmespath
+        executable: /opt/local/bin/pip
+
+    - name: apache-libcloud
+      pip:
+        name: apache-libcloud
+        executable: /opt/local/bin/pip
+
+#    - name: upgrade all packages
+#      yum:
+#        name: '*'
+#        state: latest
 

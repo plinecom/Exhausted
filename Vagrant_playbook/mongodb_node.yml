@@ -1,0 +1,39 @@
+- hosts: all
+  become: yes
+  tasks:
+
+    - name: setup yum repo
+      copy:
+        src: ../mongodb/mongodb-org-3.4.repo
+        dest: /etc/yum.repos.d/mongodb-org-3.4.repo
+    - name: install mongodb
+      yum:
+        name: mongodb-org,policycoreutils-python
+        state: latest
+    - name: firewall for mongodb
+      firewalld:
+        port: 27017/tcp
+        permanent: true
+        state: enabled
+    - name: config selinux
+      command: semanage port -a -t mongod_port_t -p tcp 27017
+
+#    - name: config mongodb port
+#      replace:
+#        dest: /etc/mongod.conf
+#        regexp: 'port: 27017'
+#        replace: 'port: 27080'
+
+    - name: config allow ext
+      replace:
+        dest: /etc/mongod.conf
+        regexp: 'bindIp: 127.0.0.1'
+        replace: 'bindIp: 0.0.0.0'
+
+
+    - name: start mongodb service
+      systemd:
+        name: mongod
+        enabled: yes
+        state: started
+
