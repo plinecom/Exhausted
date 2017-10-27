@@ -80,25 +80,25 @@ Vagrant.configure("2") do |config|
   # SHELL
 
   config.vm.define :mongodb do |mongodb|
-
+    mongodb.vm.network :private_network, ip:"192.168.33.101"
     mongodb.vm.provision "ansible_local" do |ansible|
         ansible.playbook = "Vagrant_playbook/mongodb_node.yml"
     end
   end
   config.vm.define :node1 do |node1|
-
+    node1.vm.network :private_network, ip:"192.168.33.110"
     node1.vm.provision "ansible_local" do |ansible|
         ansible.playbook = "Vagrant_playbook/vagrant.yml"
     end
   end
   config.vm.define :node2 do |node2|
-
+    node2.vm.network :private_network, ip:"192.168.33.111"
     node2.vm.provision "ansible_local" do |ansible|
         ansible.playbook = "Vagrant_playbook/vagrant.yml"
     end
   end
   config.vm.define :center do |center|
-
+    center.vm.network :private_network, ip:"192.168.33.100"
     center.vm.provision "ansible_local" do |ansible|
         ansible.playbook = "Vagrant_playbook/vagrant.yml"
     end
