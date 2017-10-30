@@ -58,10 +58,18 @@
 
   nodeinfo:{
     assign_node: "farm01",
-  }
+  },
   taskinfo:{
     frame: "1-10",
-    status: "failed|process|wait"
-  }
+    status: "failed|process|wait",
+    progress: 0,
+    start_time: 0,
+    finish_time: 0,
+    process_time: 0,
+    path_to_log: "",
+    max_memory_usage: 0,
+    max_cpu_usage: 0
+  },
+  job_document:{},
 
 }
