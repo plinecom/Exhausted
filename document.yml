@@ -16,8 +16,8 @@
   endframe: 100,
   chunksize: 10,
 
-  node_group: "",
-  node_pool: "",
+  node_group: [""],
+  node_pool: [""],
   initialstatus: "active|suspended",
   comment: "",
   project: "",
@@ -28,6 +28,17 @@
   job_time_out_sec: 0,
 
   interruptible: false, #Specifies if tasks for a job can be interrupted by a higher priority job during rendering (default = false).
+  interruptiblePercentage: 5,
+  interruptibleSec: 0,
+
+  limitResource: [""],
+
+  machineLimit: 0,
+  white_list: [""],
+  black_list: [""],
+
+  job_dependency: [""], #jobIDList
+
 
 
 

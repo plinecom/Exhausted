@@ -17,7 +17,7 @@ import sys
 def data_collect():
 
     # mongodb へのアクセスを確立
-    client = pymongo.MongoClient('localhost', 27017)
+    client = pymongo.MongoClient('192.168.33.101', 27017)
 
     # データベースを作成 (名前: my_database)
     db = client.job_database
