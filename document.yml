@@ -1,0 +1,56 @@
+#plugin_document
+{
+#  convert to jobducument
+}
+
+#job_document
+{
+  job_name: "job name",
+  job_id: 1,
+  executable: "/usr/bin/python",
+  environment: {
+    # key:"value",
+  }
+  arguments: "-r foo -p bar <STARTFRAME> <ENDFRAME> test.mb", # <value> is special parameter replace
+  startframe: 1,
+  endframe: 100,
+  chunksize: 10,
+
+  node_group: "",
+  node_pool: "",
+  initialstatus: "active|suspended",
+  comment: "",
+  project: "",
+  username: "",
+  machine_name_from : "",
+  priority: 50,
+  task_time_out_sec: 0,
+  job_time_out_sec: 0,
+
+  interruptible: false, #Specifies if tasks for a job can be interrupted by a higher priority job during rendering (default = false).
+
+
+
+  plubin_name: "Maya",
+  plugin_ducument: {
+    #document
+  }
+  status: "failed|process|wait"
+
+#  custome_key: value
+
+}
+#task_document
+{
+  job_id: 1,
+  task_id: 2,
+
+  nodeinfo:{
+    assign_node: "farm01",
+  }
+  taskinfo:{
+    frame: "1-10",
+    status: "failed|process|wait"
+  }
+
+}
